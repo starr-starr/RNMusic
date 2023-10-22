@@ -1,6 +1,7 @@
 import { Text, View, Image,TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import { useState, type FC, type ReactNode } from 'react'
-
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import mountain from '@/assets/mountain.jpg'
 import arrow_down_fill from '@/assets/triangle_down_fill.jpg'
@@ -12,8 +13,8 @@ type MyProps = {
 }
 
 const Login:FC<MyProps> = () => {
-    const [ phone,setPhone ] = useState<string>()
-
+    const { replace } = useNavigation<StackNavigationProp<any>>()
+    const [ phone,setPhone ] = useState<string>('')
     return (
         <View style={styles.root}>
             <Image source={mountain} style={styles.topPic}/>
@@ -31,7 +32,7 @@ const Login:FC<MyProps> = () => {
                         onChangeText={(phoneNum:string)=>setPhone(formatPhone(phoneNum))}
                     />
             </View>
-            <TouchableOpacity style={styles.loginBtn}>
+            <TouchableOpacity style={styles.loginBtn} onPress={()=>replace('MainTab')}>
                 <Text style={styles.loginTxt}>一键登录</Text>
                 <View  style={styles.recommendLayout}>
                     <Text style={styles.recommendTxt}>推荐</Text>
