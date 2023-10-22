@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-import { stack } from '@/screens/index';
+import { RootStack } from '@/screens/index';
 
 const { Screen, Navigator} = createStackNavigator()
 
@@ -33,7 +33,7 @@ function App(): JSX.Element {
           cardStyle: { elevation: 1, }
       }}
         >
-          {stack.map((item,index)=>{
+          {RootStack.map((item,index)=>{
               return (
                 item.component !== undefined 
                 ?    <Screen 
