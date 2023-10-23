@@ -3,49 +3,53 @@ import {
     View,
     StyleSheet
 } from "react-native";
-import type { FC, ReactNode } from 'react'
+import { type FC, type ReactNode } from 'react'
 import type { ImageSourcePropType } from "react-native";
 
 
 type MyProps = {
     children?: ReactNode
-    centerElement:ReactNode
+    centerElement: ReactNode
     leftIcon: ImageSourcePropType
-    rightIcon: ImageSourcePropType
+    rightIcon: ImageSourcePropType | ReactNode
 }
 
 
-const Header:FC<MyProps> = ({
+const Header: FC<MyProps> = ({
     leftIcon,
     centerElement,
     rightIcon
 }) => {
     return (
         <View style={style.root}>
-            <Image source={leftIcon} style={style.leftIcon}/>
+            <Image source={leftIcon} style={style.leftIcon} />
             {centerElement}
-            <Image source={rightIcon} style={style.rightIcon}/>
+            {typeof rightIcon == "number" ? (
+                <Image source={rightIcon} style={style.rightIcon} />
+            ) : (
+                rightIcon as ReactNode
+            )}
         </View>
     )
-} 
+}
 
 const style = StyleSheet.create({
-    root:{
-        width:'100%',
-        height:35,
-        flexDirection:'row',
-        alignItems:'center',
-        justifyContent:'center',
-
+    root: {
+        width: '100%',
+        height: 35,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap:15
     },
-    leftIcon:{
-        height:'80%',
-        width:20,
-        resizeMode:'cover',
+    leftIcon: {
+        height: '80%',
+        width: 20,
+        resizeMode: 'cover',
     },
-    rightIcon:{
-        height:'80%',
-        resizeMode:'contain'
+    rightIcon: {
+        height: '80%',
+        resizeMode: 'contain'
     }
 })
 

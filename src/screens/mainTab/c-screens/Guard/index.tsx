@@ -9,6 +9,7 @@ import Header  from "@/components/Header";
 import leftTab from '@/assets/leftTab.jpg'
 import icon_heart from '@/assets/icon_heart.jpg'
 import Search from "@/components/search";
+import Heart from "@/components/heart";
 
 type MyProps = {
     children?: ReactNode
@@ -21,7 +22,7 @@ const Guard: FC<MyProps> = () => {
                 <Header 
                     leftIcon={leftTab} 
                     centerElement={<Search />}
-                    rightIcon={icon_heart}
+                    rightIcon={<Heart value={false}/>}
                 />
             </View>
         </View>

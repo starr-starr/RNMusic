@@ -37,7 +37,6 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         paddingHorizontal: 10,
-        marginLeft: 16,
     },
     searchTxt: {
         fontSize: 14,
