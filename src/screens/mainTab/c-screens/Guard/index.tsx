@@ -1,10 +1,14 @@
 import {
-    Image,
     View,
-    Text,
     StyleSheet
 } from "react-native";
 import type { FC, ReactNode } from 'react'
+
+import Header  from "@/components/Header";
+
+import leftTab from '@/assets/leftTab.jpg'
+import icon_heart from '@/assets/icon_heart.jpg'
+import Search from "@/components/search";
 
 type MyProps = {
     children?: ReactNode
@@ -13,17 +17,27 @@ type MyProps = {
 const Guard: FC<MyProps> = () => {
     return (
         <View style={styles.root}>
-            <Text>广场</Text>
+            <View style={styles.container}>
+                <Header 
+                    leftIcon={leftTab} 
+                    centerElement={<Search />}
+                    rightIcon={icon_heart}
+                />
+            </View>
         </View>
     )
 }
 const styles = StyleSheet.create({
     root: {
-        width: '100%',
+        width: '100%',   
         height: '100%',
         flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center'
+        alignItems: 'center',  
+        backgroundColor: 'white',        
+    },
+    container:{
+        marginLeft:28,
+        marginRight:15, 
     }
 });
 
