@@ -4,6 +4,7 @@ import {
     Text,
     ScrollView,
     Image,
+    Dimensions,
     StyleSheet
 } from "react-native";
 import type { FC, ReactNode } from 'react'
@@ -26,6 +27,7 @@ const pics = [
     'http://p1.music.126.net/Bw1RuoC0rwuY0-jA2xUF2w==/109951169001688719.jpg',
 ]
 
+const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const Guard: FC<MyProps> = () => {
     return (
         <View style={styles.root}>
@@ -36,23 +38,37 @@ const Guard: FC<MyProps> = () => {
                     rightIcon={<Heart value={false} />}
                 />
                 <PicSwiper pictures={pics} />
-                <ScrollView
-                    horizontal={true}
-                    showsHorizontalScrollIndicator={false}
-                >
-                    {guardTab.map((item)=>{
-                        return (
-                            <TouchableOpacity
-                            key={item.desc}
-                            // style={styles.tabItem}
-                            // onPress={() => onCategoryPress(item)}
-                        >
-                            <Image source={item.icon}/>
-                            <Text>{item.desc}</Text>
-                        </TouchableOpacity>
-                        )
-                    })}
-                </ScrollView>
+                <View style={styles.scrollViewContainer}>
+                    <ScrollView
+                        style={styles.scrollView}
+                        horizontal={true}
+                        showsHorizontalScrollIndicator={false}
+                    >
+                        {guardTab.map((item, index) => {
+                            return (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={styles.tabItem}
+                                >
+                                    <Image source={item.icon} style={{ width: 25, height: 25, resizeMode: 'cover' }} />
+                                    <Text style={styles.tabItemText}>{item.desc}</Text>
+                                </TouchableOpacity>
+                            )
+                        })}
+                    </ScrollView>
+                </View>
+                <View
+                        style={{
+                            width: (SCREEN_WIDTH-43) / 6,
+                            height: 5,
+                            backgroundColor: 'red',
+                            borderRadius: 8,
+                            position:'relative',
+                            top:-15,
+                            alignItems:'center',
+                            justifyContent:'center'
+                        }}
+                    ></View>
             </View>
         </View>
     )
@@ -66,9 +82,19 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
     },
     container: {
+        alignItems: 'center',
         marginLeft: 28,
         marginRight: 15,
         gap: 10
+    },
+    scrollViewContainer: {
+        flexDirection: 'row',
+        height: 60,
+        marginTop: 10
+    },
+    scrollView: {
+        flex: 1,
+        height: '100%',
     },
     slide: {
         width: '100%',
@@ -76,6 +102,13 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         resizeMode: 'cover',
         flex: 1
+    },
+    tabItem: {
+        width: 60,
+        alignItems: 'center',
+    },
+    tabItemText: {
+        marginTop: 5
     }
 });
 
