@@ -11,9 +11,9 @@ import Welcome from "./welcome"
 import Login from "./login"
 import MainTab from "./mainTab"
 
-import Guard from "./mainTab/c-screens/Guard"
-import My from "./mainTab/c-screens/My"
-import Comment from "./mainTab/c-screens/Comment"
+import Guard from "./mainTab/Guard"
+import My from "./mainTab/My"
+import Comment from "./mainTab/Comment"
 
 type RouteName = keyof ParamListBase
 

@@ -1,5 +1,9 @@
 import {
     View,
+    TouchableOpacity,
+    Text,
+    ScrollView,
+    Image,
     StyleSheet
 } from "react-native";
 import type { FC, ReactNode } from 'react'
@@ -10,6 +14,7 @@ import leftTab from '@/assets/leftTab.jpg'
 import Search from "@/components/search";
 import Heart from "@/components/heart";
 import PicSwiper from "@/components/swiper";
+import { guardTab } from "@/consts/guardTab";
 
 type MyProps = {
     children?: ReactNode
@@ -31,6 +36,23 @@ const Guard: FC<MyProps> = () => {
                     rightIcon={<Heart value={false} />}
                 />
                 <PicSwiper pictures={pics} />
+                <ScrollView
+                    horizontal={true}
+                    showsHorizontalScrollIndicator={false}
+                >
+                    {guardTab.map((item)=>{
+                        return (
+                            <TouchableOpacity
+                            key={item.desc}
+                            // style={styles.tabItem}
+                            // onPress={() => onCategoryPress(item)}
+                        >
+                            <Image source={item.icon}/>
+                            <Text>{item.desc}</Text>
+                        </TouchableOpacity>
+                        )
+                    })}
+                </ScrollView>
             </View>
         </View>
     )
@@ -46,7 +68,7 @@ const styles = StyleSheet.create({
     container: {
         marginLeft: 28,
         marginRight: 15,
-        gap:10
+        gap: 10
     },
     slide: {
         width: '100%',
