@@ -3,11 +3,8 @@ import { useState, type FC, type ReactNode } from 'react'
 import {
     createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import { TabStack } from "..";
 
-type MyProps = {
-    children?: ReactNode
-}
+import { TabStack } from "..";
 
 import bottomTab_guard from '@/assets/bottomTab_guard.jpg'
 import bottomTab_guard_select from '@/assets/bottomTab_guard_select.jpg'
@@ -17,6 +14,10 @@ import bottomTab_Comment from '@/assets/bottomTab_Comment.jpg'
 import bottomTab_Comment_select from '@/assets/bottomTab_Comment_select.jpg'
 
 const { Navigator,Screen } = createBottomTabNavigator()
+
+type MyProps = {
+    children?: ReactNode
+}
 
 const MainTab:FC<MyProps> = () => {
     return (
@@ -43,7 +44,8 @@ const MainTab:FC<MyProps> = () => {
                                 }} source={img} />
                             },
                             tabBarActiveTintColor:'#ff2442',
-                            tabBarInactiveTintColor:'#999'
+                            tabBarInactiveTintColor:'#999',
+                            tabBarItemStyle:{marginBottom:5}
                         }
                     }
             }

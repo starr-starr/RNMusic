@@ -24,7 +24,7 @@ function App(): JSX.Element {
     <SafeAreaProvider style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor='white'
       />
       <NavigationContainer>
         <Navigator
