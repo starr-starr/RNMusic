@@ -47,7 +47,7 @@ const GuardTab: FC<MyProps> = () => {
     });
 
     return (
-        <View style={{ flexDirection: 'column', height: '100%', flex: 1, width: SCREEN_WIDTH - 43, alignItems: 'center' }}>
+        <View style={{ width: SCREEN_WIDTH - 43, alignItems: 'center' }}>
             <View style={styles.scrollViewContainer}>
                 <ScrollView
                     style={styles.scrollView}
