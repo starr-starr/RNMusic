@@ -38,17 +38,19 @@ const Header: FC<MyProps> = ({
 const style = StyleSheet.create({
     root: {
         width: '100%',
-        height: 35,
         flexDirection: 'row',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginRight:'auto'
     },
     leftIcon: {
-        height: '80%',
+        height: '100%',
         width: 20,
     },
     rightIcon: {
-        height: '80%',
-        resizeMode: 'contain'
+        height: '100%',
+        resizeMode: 'contain',
+        position:'relative',
+        marginLeft:'auto',
     }
 })
 
