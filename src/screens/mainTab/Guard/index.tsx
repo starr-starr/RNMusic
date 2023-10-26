@@ -1,24 +1,24 @@
 import {
     View,
-    TouchableOpacity,
+    StyleSheet,
     Text,
-    ScrollView,
-    Image,
-    Dimensions,
-    Animated,
-    StyleSheet
+    Image
 } from "react-native";
-import { useState, useRef } from 'react'
+
 import type { FC, ReactNode } from 'react'
 
 import Header from "@/components/Header";
-
-import leftTab from '@/assets/leftTab.jpg'
+import GuardTab from "./c-components/guardTab";
 import Search from "@/components/search";
 import Heart from "@/components/heart";
 import PicSwiper from "@/components/swiper";
-import { guardTab } from "@/consts/guardTab";
-import GuardTab from "./c-components/guardTab";
+
+import leftTab from '@/assets/leftTab.jpg'
+import refersh from '@/assets/refresh.jpg'
+import play from '@/assets/play.jpg'
+import more from '@/assets/more.jpg'
+
+
 
 type MyProps = {
     children?: ReactNode
@@ -30,19 +30,46 @@ const pics = [
     'http://p1.music.126.net/Bw1RuoC0rwuY0-jA2xUF2w==/109951169001688719.jpg',
 ]
 
-const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const Guard: FC<MyProps> = () => {    
+const First = () => {
+    return (
+        <View style={{ flexDirection: 'row',marginLeft:3,alignItems:'center',justifyContent:'center' }}>
+            <Text style={{ marginRight:3,fontSize:16,fontWeight:'bold',color:'black'}}>每天听点好音乐</Text>
+            <View style={{
+                flexDirection: 'row',
+                alignItems:'center',
+                // justifyContent:'center',
+                borderRadius:10,
+                borderWidth:1,
+                backgroundColor:'#dbdbdb',
+                borderColor:'white',
+                paddingHorizontal:4,
+                gap:2
+            }}>
+                <Image source={play} />
+                <Text style={{alignItems:'center'}}>播放</Text>
+            </View>
+        </View>
+    )
+}
+
+const Guard: FC<MyProps> = () => {
     return (
         <View style={styles.root}>
             <View style={styles.container}>
                 <Header
                     leftIcon={leftTab}
+                    leftIconMode="cover"
                     centerElement={<Search />}
                     rightIcon={<Heart value={false} />}
                 />
                 <PicSwiper pictures={pics} />
                 <GuardTab />
-
+                <Header
+                    leftIcon={refersh}
+                    leftIconMode="contain"
+                    centerElement={<First />}
+                    rightIcon={more} 
+                />
             </View>
         </View>
     )
@@ -59,29 +86,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 28,
         marginRight: 15,
-        gap: 10
-    },
-    scrollViewContainer: {
-        height: 60,
-        marginTop: 10
-    },
-    scrollView: {
-        flex: 1,
-        height: '100%',
-    },
-    slide: {
-        width: '100%',
-        height: '100%',
-        borderRadius: 15,
-        resizeMode: 'cover',
-        flex: 1
-    },
-    tabItem: {
-        width: 60,
-        alignItems: 'center',
-    },
-    tabItemText: {
-        marginTop: 5
+        gap: 10,
     }
 });
 
