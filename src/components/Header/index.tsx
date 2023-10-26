@@ -6,23 +6,25 @@ import {
 import { type FC, type ReactNode } from 'react'
 import type { ImageSourcePropType } from "react-native";
 
+type resizeMode = 'center' | 'contain' | 'cover' | 'repeat' | 'stretch' 
 
 type MyProps = {
     children?: ReactNode
     centerElement: ReactNode
     leftIcon: ImageSourcePropType
     rightIcon: ImageSourcePropType | ReactNode
+    leftIconMode: resizeMode
 }
-
 
 const Header: FC<MyProps> = ({
     leftIcon,
     centerElement,
-    rightIcon
+    rightIcon,
+    leftIconMode
 }) => {
     return (
         <View style={style.root}>
-            <Image source={leftIcon} style={style.leftIcon} />
+            <Image source={leftIcon} style={[style.leftIcon,{resizeMode:leftIconMode}]} />
             {centerElement}
             {typeof rightIcon == "number" ? (
                 <Image source={rightIcon} style={style.rightIcon} />
@@ -38,14 +40,11 @@ const style = StyleSheet.create({
         width: '100%',
         height: 35,
         flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap:15
+        alignItems: 'center'
     },
     leftIcon: {
         height: '80%',
         width: 20,
-        resizeMode: 'cover',
     },
     rightIcon: {
         height: '80%',
